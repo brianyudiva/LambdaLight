@@ -15,7 +15,7 @@ module Common (
 , insert
 ) where
 
-import Data.HashMap.Strict as M
+import Data.Map.Strict as M
 
 data Token = LParen | RParen | Word String | Lambda | Dot | Def | End deriving (Read, Show, Eq)
 
@@ -29,7 +29,7 @@ data Expr = Var String
           | Prim String deriving (Read, Eq)
 
 -- we will define an environment of bindings, which we will execute our program in
-type Env = HashMap String Expr
+type Env = Map String Expr
 
 global_env :: Env
 global_env = fromList [("show", (Prim "show"))]
