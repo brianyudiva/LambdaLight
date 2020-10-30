@@ -2,12 +2,13 @@
 -- Includes Type Declarations, helper methods, etc.
 
 module Common (
-  Token (..)
-, Expr  (..)
-, Comp  (..)
-, Env   (..)
-, Eval  (..)
-, global_env
+  Token (..) --Membuat tipe data Token
+, Expr  (..) --Membuat tipe data Expr
+, Comp  (..) --Membuat tipe Comp
+, Env   (..) --Membuat tipe Env
+, Eval  (..) --Membuat tipe Eval
+, Operasi (..)
+, global_env --TODO : ngertiin ini buat apaan
 , apply_primitive
 , lookup_in_env
 , printer
@@ -17,7 +18,7 @@ module Common (
 
 import Data.Map.Strict as M
 
-data Token = LParen | RParen | Word String | Lambda | Dot | Def | End deriving (Read, Show, Eq)
+data Token = LParen | RParen | Word String | Number String | Tambah | Kali | Lambda | Dot | Def | End deriving (Read, Show, Eq)
 
 -- we will define 3 semantic constructs: a 'Var'iable, 'Abs'traction, and 'App'lication.
 -- we will define 'Bind'ings, which modify the execution environment.

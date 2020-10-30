@@ -13,10 +13,13 @@ tokenize (x:xs)
   |  x == '(' = LParen : tokenize xs
   |  x == ')' = RParen : tokenize xs
   |  x == '.' = Dot : tokenize xs
+  |  x == '+' = Tambah : tokenize xs
+  |  x == '*' = Kali : tokenize xs
   |  x == ':' && xs /= [] && head xs == '=' = Def : tokenize (tail xs)
   |  x == ' ' = tokenize xs
   |  x == '-' && xs /= [] && head xs == '-' = []
-  | otherwise = tokenize_word (x:xs)
+  |  isDigit x = Number x : tokenize xs
+  |  otherwise = tokenize_word (x:xs)
 
 tokenize_word :: String -> [Token]
 tokenize_word (x:xs) = let ans = (head_words (x:xs)) in Word (fst ans) : (tokenize (snd ans))
@@ -33,4 +36,7 @@ head_words (x:xs)
   | x == ':' = ("", x:xs)
   | x == '\\'= ("", x:xs)
   | x == 'λ' = ("", x:xs)
+  | x == '+' = ("", x:xs)
+  | x == '*' = ("", x:xs)
+  | isDigit x = ("", x:xs)
   | otherwise = let ans = (head_words xs) in (x : fst ans, snd ans)

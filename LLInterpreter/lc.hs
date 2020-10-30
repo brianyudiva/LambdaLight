@@ -15,7 +15,7 @@ main :: IO ()
 main = getArgs >>= parse_args >>= repl
 
 parse_args :: [String] -> IO Env
-parse_args [] = return global_env
+parse_args [] = return global_env --global_env dari Common.hs
 parse_args ["-h"] = usage >> exit
 parse_args ["--help"] = usage >> exit
 parse_args ["-v"] = version >> exit
